@@ -1,0 +1,102 @@
+POST http://localhost:5001/api/auth/register
+Content-Type: application/json
+
+{
+    "email": "maubypurnama010407@gmail.com",
+    "password": "12345678"
+}
+###
+POST http://localhost:5001/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "maubypurnama010407@gmail.com",
+    "password": "12345678"
+}
+###
+POST http://localhost:5001/api/candidates
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI4MzYxMjc2LCJleHAiOjE3MjgzNjQ4NzZ9.4Eqf-rSqEUequuFEiwDFYAJ7flDWXGy52QYH6blL3ho
+
+{
+    "name": "Kandidat 2",
+    "vision": "Visi kandidat 2",
+    "mission": "Misi kandidat 2",
+    "photo": "http://example.com/photo1.jpg"
+}
+###
+GET http://localhost:5001/api/candidates
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI4MzYwMTc5LCJleHAiOjE3MjgzNjM3Nzl9.2xwEDJchIm3cKyyetjV96YRJ9NpPnPFL0_zvtJoyToA
+###
+PUT http://localhost:5001/api/candidates/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI4MzQzMTA2LCJleHAiOjE3MjgzNDY3MDZ9.WAosS9B7i33Sa9htX1EPbC0rURc0JYC4sf-hZuM9xPM 
+
+{
+    "name": "Kandidat 2",
+    "vision": "Visi kandidat 2",
+    "mission": "Misi kandidat 2",
+    "photo": "http://example.com/photo1.jpg"
+}
+###
+DELETE http://localhost:5001/api/candidates/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI4MzQzMTA2LCJleHAiOjE3MjgzNDY3MDZ9.WAosS9B7i33Sa9htX1EPbC0rURc0JYC4sf-hZuM9xPM   
+###
+GET http://localhost:5001/api/votes/results
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI4MzYwMTc5LCJleHAiOjE3MjgzNjM3Nzl9.2xwEDJchIm3cKyyetjV96YRJ9NpPnPFL0_zvtJoyToA
+### user ###
+POST http://localhost:5001/api/users/register
+Content-Type: application/json
+
+{
+    "nis": "1234567890"
+}
+
+###
+POST http://localhost:5001/api/users/verify
+Content-Type: application/json
+
+{
+    "nis": "1234567890"
+}
+###
+POST http://localhost:5001/api/users/vote
+Content-Type: application/json
+
+{
+    "nis": "1234567890",
+    "candidateId": 1
+}
+###
+GET http://localhost:5001/api/users/candidates
+
+
+
+
+
+
+### guru ###
+POST http://localhost:5001/api/teachers/register
+Content-Type: application/json
+
+{
+    "nik": "1234567890987654"
+}
+
+###
+POST http://localhost:5001/api/teachers/verify
+Content-Type: application/json
+
+{
+    "nik": "1234567890987654"
+} 
+###
+POST http://localhost:5001/api/teachers/vote
+Content-Type: application/json
+
+{
+    "nik": "1234567890987654",
+    "candidateId": 2
+}
+###
+GET http://localhost:5001/api/users/candidates
