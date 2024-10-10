@@ -4,7 +4,7 @@ import Candidate from '../models/Candidate.js';
 // Mendapatkan semua kandidat
 export const getAllCandidates = async (req, res) => {
     try {
-        const candidates = await Candidate.findAll({ order: [['createdAt', 'DESC']] });
+        const candidates = await Candidate.findAll({ order: [['id', 'ASC']] });
         res.json(candidates);
     } catch (error) {
         console.error('Error fetching candidates:', error);

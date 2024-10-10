@@ -7,19 +7,19 @@ export const verifyNIK = async (req, res) => {
   const { nik } = req.body;
 
   try {
-    const teacher = await Teacher.findOne({ where: { nik }, include: Vote });
+    const teacher = await Teacher.findOne({
+      where: { nik },
+      include: Vote, // Pastikan Vote di-include
+    });
 
     if (!teacher) {
-      return res
-        .status(404)
-        .json({
-          message:
-            "NIK tidak ditemukan. Silakan mendaftarkan NIK Anda terlebih dahulu.",
-        });
+      return res.status(404).json({
+        message: "NIK tidak ditemukan. Silakan mendaftarkan NIK Anda terlebih dahulu.",
+      });
     }
 
     // Periksa apakah ada vote yang terkait dengan guru ini
-    if (teacher.Votes && teacher.Votes.length > 0) {
+    if (teacher.Vote) { // Cek apakah ada Vote
       return res.status(400).json({ message: "Anda sudah melakukan vote." });
     }
 
@@ -29,6 +29,8 @@ export const verifyNIK = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+
 
 export const registerNIK = async (req, res) => {
   const { nik } = req.body;

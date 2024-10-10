@@ -16,17 +16,17 @@ Content-Type: application/json
 ###
 POST http://localhost:5001/api/candidates
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI4MzYxMjc2LCJleHAiOjE3MjgzNjQ4NzZ9.4Eqf-rSqEUequuFEiwDFYAJ7flDWXGy52QYH6blL3ho
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI4MzY1NTc0LCJleHAiOjE3MjgzNjkxNzR9.hhRePhf4iRsDV4jNjAXztliNnTt58J8PYh-ooO4Eul4
 
 {
-    "name": "Kandidat 2",
-    "vision": "Visi kandidat 2",
-    "mission": "Misi kandidat 2",
+    "name": "Kandidat 3",
+    "vision": "Visi kandidat 3",
+    "mission": "Misi kandidat 3",
     "photo": "http://example.com/photo1.jpg"
 }
 ###
 GET http://localhost:5001/api/candidates
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI4MzYwMTc5LCJleHAiOjE3MjgzNjM3Nzl9.2xwEDJchIm3cKyyetjV96YRJ9NpPnPFL0_zvtJoyToA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI4Mzg4NDUwLCJleHAiOjE3MjgzOTIwNTB9.bc-a-AM63lOfPgpBbFXHf4UW55eYKNEoZjKO75rhBtc
 ###
 PUT http://localhost:5001/api/candidates/2
 Content-Type: application/json
@@ -43,7 +43,7 @@ DELETE http://localhost:5001/api/candidates/2
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI4MzQzMTA2LCJleHAiOjE3MjgzNDY3MDZ9.WAosS9B7i33Sa9htX1EPbC0rURc0JYC4sf-hZuM9xPM   
 ###
 GET http://localhost:5001/api/votes/results
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI4MzYwMTc5LCJleHAiOjE3MjgzNjM3Nzl9.2xwEDJchIm3cKyyetjV96YRJ9NpPnPFL0_zvtJoyToA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI4Mzg2Nzg4LCJleHAiOjE3MjgzOTAzODh9.auhAu1jA4oDymJAy6rqx4qOvy6f3UbYQa7wpdLCcjxw
 ### user ###
 POST http://localhost:5001/api/users/register
 Content-Type: application/json
@@ -88,7 +88,7 @@ POST http://localhost:5001/api/teachers/verify
 Content-Type: application/json
 
 {
-    "nik": "1234567890987654"
+    "nik": "1234567890987655"
 } 
 ###
 POST http://localhost:5001/api/teachers/vote
@@ -100,3 +100,7 @@ Content-Type: application/json
 }
 ###
 GET http://localhost:5001/api/users/candidates
+
+###
+POST http://localhost:5001/api/auth/import
+Content-Type: application/json
