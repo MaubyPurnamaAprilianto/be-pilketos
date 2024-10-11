@@ -16,17 +16,19 @@ Content-Type: application/json
 ###
 POST http://localhost:5001/api/candidates
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI4MzY1NTc0LCJleHAiOjE3MjgzNjkxNzR9.hhRePhf4iRsDV4jNjAXztliNnTt58J8PYh-ooO4Eul4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI4NTY5MzgwLCJleHAiOjE3Mjg1NzI5ODB9.hd0lWqdwOcQrjXfi_gUOqmOWME0TcUJMXBSdGaCjkRw
 
 {
     "name": "Kandidat 3",
+    "name_ketua": "Kaka",
+    "name_wakil": "Sandu",
     "vision": "Visi kandidat 3",
     "mission": "Misi kandidat 3",
-    "photo": "http://example.com/photo1.jpg"
+    "photo": "image-kandidat.jpg"
 }
 ###
 GET http://localhost:5001/api/candidates
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI4Mzg4NDUwLCJleHAiOjE3MjgzOTIwNTB9.bc-a-AM63lOfPgpBbFXHf4UW55eYKNEoZjKO75rhBtc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI4NjI0Njc2LCJleHAiOjE3Mjg2MjgyNzZ9.seY_51LTkwfSClvtZ9SrDzPWmiBlz4axZES5oJPWJhA
 ###
 PUT http://localhost:5001/api/candidates/2
 Content-Type: application/json
@@ -104,3 +106,10 @@ GET http://localhost:5001/api/users/candidates
 ###
 POST http://localhost:5001/api/auth/import
 Content-Type: application/json
+
+
+###
+GET http://localhost:5001/api/teachers/
+
+###
+GET http://localhost:5001/api/users/

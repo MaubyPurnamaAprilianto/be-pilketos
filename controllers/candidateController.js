@@ -14,10 +14,10 @@ export const getAllCandidates = async (req, res) => {
 
 // Menambah kandidat baru
 export const addCandidate = async (req, res) => {
-    const { name, vision, mission, photo } = req.body;
+    const { name, name_ketua, name_wakil, vision, mission, photo } = req.body;
 
     try {
-        const candidate = await Candidate.create({ name, vision, mission, photo });
+        const candidate = await Candidate.create({ name, name_ketua, name_wakil, vision, mission, photo });
         res.status(201).json(candidate);
     } catch (error) {
         console.error('Error adding candidate:', error);
@@ -28,7 +28,7 @@ export const addCandidate = async (req, res) => {
 // Mengupdate data kandidat
 export const updateCandidate = async (req, res) => {
     const { id } = req.params;
-    const { name, vision, mission, photo } = req.body;
+    const { name, name_ketua, name_wakil, vision, mission, photo } = req.body;
 
     try {
         const candidate = await Candidate.findByPk(id);
@@ -39,6 +39,8 @@ export const updateCandidate = async (req, res) => {
 
         // Update field jika ada perubahan
         if (name) candidate.name = name;
+        if (name_ketua) candidate.name_ketua = name_ketua;
+        if (name_wakil) candidate.name_wakil = name_wakil;
         if (vision) candidate.vision = vision;
         if (mission) candidate.mission = mission;
         if (photo) candidate.photo = photo;

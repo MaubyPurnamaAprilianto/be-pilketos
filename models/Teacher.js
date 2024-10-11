@@ -1,7 +1,5 @@
-// models/Teacher.js
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/database.js';
-import bcrypt from 'bcryptjs';
 
 const Teacher = sequelize.define('Teacher', {
     id: {
@@ -20,6 +18,15 @@ const Teacher = sequelize.define('Teacher', {
             },
             isNumeric: {
                 msg: 'NIK hanya boleh berisi angka.',
+            },
+        },
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: 'Nama guru tidak boleh kosong.',
             },
         },
     },

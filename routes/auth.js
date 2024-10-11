@@ -2,6 +2,7 @@
 import express from 'express';
 import { register, login } from '../controllers/authController.js';
 import { uploadExcel, importData } from '../controllers/importController.js';
+import { uploadExcelGuru, importDataGuru } from '../controllers/importGuruController.js';
 
 const router = express.Router();
 
@@ -11,6 +12,8 @@ router.post('/register', register);
 // Route untuk login Admin
 router.post('/login', login);
 
-router.post('/import', uploadExcel, importData);
+router.post('/importSiswa', uploadExcel, importData);
+
+router.post('/importGuru', uploadExcelGuru, importDataGuru);
 
 export default router;

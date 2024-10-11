@@ -14,12 +14,14 @@ export const verifyNIK = async (req, res) => {
 
     if (!teacher) {
       return res.status(404).json({
-        message: "NIK tidak ditemukan. Silakan mendaftarkan NIK Anda terlebih dahulu.",
+        message:
+          "NIK tidak ditemukan. Silakan mendaftarkan NIK Anda terlebih dahulu.",
       });
     }
 
     // Periksa apakah ada vote yang terkait dengan guru ini
-    if (teacher.Vote) { // Cek apakah ada Vote
+    if (teacher.Vote) {
+      // Cek apakah ada Vote
       return res.status(400).json({ message: "Anda sudah melakukan vote." });
     }
 
@@ -29,8 +31,6 @@ export const verifyNIK = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
-
-
 
 export const registerNIK = async (req, res) => {
   const { nik } = req.body;
@@ -63,7 +63,9 @@ export const castVote = async (req, res) => {
     }
 
     // Cek apakah guru sudah memberikan vote
-    const existingVote = await Vote.findOne({ where: { teacherId: teacher.id } });
+    const existingVote = await Vote.findOne({
+      where: { teacherId: teacher.id },
+    });
 
     if (existingVote) {
       return res.status(400).json({ message: "Anda sudah memberikan suara." });
@@ -82,5 +84,15 @@ export const castVote = async (req, res) => {
   }
 };
 
+// controllers/teacherController.js
 
-
+// Fungsi untuk mendapatkan data guru berdasarkan teacherId
+export const getDataTeacher = async (req, res) => {
+  try {
+    const teacher = await Teacher.findAll({ order: [["id", "ASC"]] });
+    res.json(teacher);
+  } catch (error) {
+    console.error("Error fetching candidates:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};

@@ -3,6 +3,7 @@ import multer from "multer";
 import xlsx from "xlsx";
 import Admin from "../models/Admin.js"; // Pastikan ini adalah model yang benar
 import User from "../models/User.js";   // Tambahkan model User untuk tabel users
+import Teacher from "../models/Teacher.js";
 
 // Konfigurasi multer untuk penyimpanan file sementara
 const storage = multer.diskStorage({
@@ -21,7 +22,7 @@ const upload = multer({
 });
 
 // Fungsi untuk mengimpor data dari file Excel
-export const importData = async (req, res) => {
+export const importDataGuru = async (req, res) => {
   try {
     const file = req.file;
 
@@ -36,33 +37,32 @@ export const importData = async (req, res) => {
     const data = xlsx.utils.sheet_to_json(sheet);
 
     // Tempatkan data __EMPTY_1 yang valid dalam array untuk bulk insert
-    const usersToInsert = [];
+    const guruToInsert = [];
 
     // Simpan data ke database
     for (const item of data) {
-      const { __EMPTY ,__EMPTY_1 ,__EMPTY_4 } = item; // Tambahkan kolom __EMPTY_1
+      const { __EMPTY ,__EMPTY_4 } = item; // Tambahkan kolom __EMPTY_1
       // console.log(item);
 
 
 
       // Simpan ke array untuk bulk insert ke tabel User (kolom nis)
-      if (__EMPTY_1 !== undefined) {
+      if (__EMPTY !== undefined) {
     
-        usersToInsert.push({
-          nis: __EMPTY_1, // Masukkan __EMPTY_1 ke kolom nis di tabel users
+        guruToInsert.push({
           name: __EMPTY, // Masukkan __EMPTY ke kolom name di tabel users
-          kelas: __EMPTY_4, // Masukkan __EMPTY_4 ke kolom kelas di tabel users
+          nik: __EMPTY_4, // Masukkan __EMPTY_4 ke kolom kelas di tabel users
         });
       }
     }
 
-    const filterData = usersToInsert.slice(2)
+    const filterData = guruToInsert.slice(2)
 
-    console.log(usersToInsert);
+    console.log(guruToInsert);
     // Jika ada data yang valid, lakukan bulk insert ke tabel User
-    if (usersToInsert.length > 0) {
+    if (guruToInsert.length > 0) {
       try {
-        await User.bulkCreate(filterData); // Masukkan data array ke tabel users
+        await Teacher.bulkCreate(filterData); // Masukkan data array ke tabel users
         res.status(200).json({ message: "Data berhasil diimpor." });
       } catch (err) {
         console.error("Gagal mengimpor data ke users:", err);
@@ -78,4 +78,4 @@ export const importData = async (req, res) => {
 };
 
 // Export multer untuk digunakan dalam rute
-export const uploadExcel = upload.single("file"); // 'file' adalah nama field dalam form
+export const uploadExcelGuru = upload.single("file"); // 'file' adalah nama field dalam form

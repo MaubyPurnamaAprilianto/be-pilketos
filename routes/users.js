@@ -1,6 +1,6 @@
 // routes/users.js
 import express from 'express';
-import { verifyNIS, registerNIS, castVote,getCandidates } from '../controllers/userController.js';
+import { verifyNIS, registerNIS, castVote,getCandidates, getDataSiswa } from '../controllers/userController.js';
 
 const router = express.Router();
 
@@ -15,5 +15,8 @@ router.post('/vote', castVote);
 
 // Route untuk mendapatkan semua candidat
 router.get('/candidates', getCandidates);
+
+// Route untuk mendapatkan data siswa
+router.get('/', getDataSiswa);
 
 export default router;

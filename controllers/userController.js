@@ -103,3 +103,13 @@ export const getCandidates = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+export const getDataSiswa = async (req, res) => {
+  try {
+    const siswa = await User.findAll({ order: [["id", "ASC"]] });
+    res.json(siswa);
+  } catch (error) {
+    console.error("Error fetching candidates:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
