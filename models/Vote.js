@@ -11,20 +11,20 @@ const Vote = sequelize.define('Vote', {
         primaryKey: true,
     },
     userId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: true,
         references: {
             model: User,
-            key: 'id',
+            key: 'nis',
         },
         unique: true, // Hanya satu suara per pengguna
     },
     teacherId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: true,
         references: {
             model: Teacher,
-            key: 'id',
+            key: 'nik',
         },
         unique: true, // Hanya satu suara per guru
     },

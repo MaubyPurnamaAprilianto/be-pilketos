@@ -113,3 +113,6 @@ GET http://localhost:5001/api/teachers/
 
 ###
 GET http://localhost:5001/api/users/
+
+###
+GET http://localhost:5001/api/auth/statistics

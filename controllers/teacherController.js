@@ -2,6 +2,11 @@
 import Teacher from "../models/Teacher.js";
 import Vote from "../models/Vote.js";
 import Candidate from "../models/Candidate.js";
+import crypto from "crypto";
+
+const generateRandomCode = () => {
+  return crypto.randomBytes(3).toString("hex"); // Menghasilkan kode acak dengan panjang 6 karakter
+};
 
 export const verifyNIK = async (req, res) => {
   const { nik } = req.body;
@@ -71,11 +76,18 @@ export const castVote = async (req, res) => {
       return res.status(400).json({ message: "Anda sudah memberikan suara." });
     }
 
-    // Membuat voting baru
+    // Buat kode acak untuk disimpan di tabel Vote
+    const randomCode = generateRandomCode();
+    console.log(`Generated voteCode: ${randomCode}`); // Logging
+
+    // Membuat voting baru dengan menyimpan kode acak
     const vote = await Vote.create({
       teacherId: teacher.id,
       candidateId,
+      voteCode: randomCode, // Simpan kode acak di kolom voteCode
     });
+
+    console.log(`Vote created: ${JSON.stringify(vote)}`); // Logging
 
     res.status(201).json({ message: "Vote berhasil dilakukan.", vote });
   } catch (error) {

@@ -1,6 +1,11 @@
 // controllers/authController.js
 import Admin from '../models/Admin.js';
 import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
+import Teacher from '../models/Teacher.js';
+import Vote from '../models/Vote.js';
+import { Op } from 'sequelize';
+
 
 // Fungsi untuk membuat token JWT
 const generateToken = (admin) => {
@@ -61,3 +66,31 @@ export const login = async (req, res) => {
     }
 };
 
+export const getVoteStatistics = async (req, res) => {
+    try {
+        // Hitung total siswa dan guru
+        const totalStudents = await User.count();
+        const totalTeachers = await Teacher.count();
+
+        // Hitung jumlah siswa dan guru yang sudah vote
+        const votedStudents = await Vote.count({ where: { userId: { [Op.ne]: null } } });
+        const votedTeachers = await Vote.count({ where: { teacherId: { [Op.ne]: null } } });
+
+        // Siswa dan guru yang belum vote
+        const notVotedStudents = totalStudents - votedStudents;
+        const notVotedTeachers = totalTeachers - votedTeachers;
+
+        // Kembalikan hasil
+        res.json({
+            totalStudents,
+            votedStudents,
+            notVotedStudents,
+            totalTeachers,
+            votedTeachers,
+            notVotedTeachers
+        });
+    } catch (error) {
+        console.error('Error fetching vote statistics:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
